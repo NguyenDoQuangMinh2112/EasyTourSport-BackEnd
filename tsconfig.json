@@ -24,6 +24,12 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "noPropertyAccessFromIndexSignature": false,
+
+    // import Alias
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"] // Đường dẫn tương đối cho các import (alias)
+    }
   }
 }
