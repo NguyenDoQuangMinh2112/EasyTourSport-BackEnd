@@ -1,28 +1,22 @@
-import express from 'express';
-import type { Express } from 'express';
-import dotenv from 'dotenv';
+import { Elysia } from 'elysia'
+import dotenv from 'dotenv'
 
-import sequelize from '~/config/database';
+import sequelize from '@/config/database'
 
-dotenv.config();
+dotenv.config()
 
-const app: Express = express();
-const port = process.env.PORT || 3000;
+const app = new Elysia()
+const port = process.env.PORT || 3000
 
-app.use(express.json());
+app.get('/', () => 'Welcome to EasyTourSport system! Im Adam the creator of this server.')
 
-app.get('/', (_req, res) => {
-  res.send('Welcome to EasyTourSport system! Im Adam the creator of this server.');
-});
-
-(async () => {
+;(async () => {
   try {
-    await sequelize.authenticate();
-    console.log('Database connected');
-    app.listen(port, () => {
-      console.log(`Server running at http://localhost:${port}`);
-    });
+    await sequelize.authenticate()
+    console.log('Database connected')
+    app.listen(port)
+    console.log(`Server running at http://localhost:${port}`)
   } catch (error: any) {
-    console.error('Error:', error);
+    console.error('Error:', error)
   }
-})();
+})()
